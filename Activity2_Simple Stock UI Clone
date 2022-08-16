@@ -1,0 +1,202 @@
+// Day 1 - Fluter Essentials
+
+// ignore_for_file: always_specify_types
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Simple Stock',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(title: 'Simple Stock'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    // 1 `Scaffold` is 1 screen in the app.
+    List<String> input1 = [
+      'Personal Data',
+      'Settings',
+      'E-Statement',
+      'Referral Code'
+    ];
+    List<String> input2 = ['FAQs', 'Our Handbook', 'Community'];
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Column(
+        children: [
+          Row(
+            children: [
+              Container(
+                  margin: EdgeInsets.only(left: 16, top: 16),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12.0),
+                      child: Image.asset('images/formal.jpg',
+                          height: 30, width: 30, fit: BoxFit.fill))),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(
+                      left: 16,
+                      top: 16,
+                    ),
+                    child: Text(
+                      "URIS A. FONOLLERA",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    height: 16,
+                    width: 200,
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(
+                      left: 16,
+                      top: 8,
+                    ),
+                    child: Text(
+                      "Very Gwapo and Honest",
+                    ),
+                    height: 16,
+                    width: 170,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          const Divider(height: 1.15),
+          for (var i = 0; i < 4; i++) ...[
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    const SizedBox(width: 16),
+                    Container(
+                      //input image inside container
+                      child: Image.asset(
+                        'images/${i}.png',
+                        height: 30,
+                        width: 30,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Container(
+                      child: Text('${input1[i]}'),
+                    ),
+                  ],
+                ),
+                Container(
+                  padding: EdgeInsets.only(right: 10),
+                  child: Image.asset(
+                    'images/right_arrow.png',
+                    height: 10,
+                    width: 15,
+                  ),
+                ),
+              ],
+            ),
+          ],
+          const SizedBox(height: 16),
+          const Divider(height: 1.15),
+          for (var i = 0; i < 3; i++) ...[
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    const SizedBox(width: 16),
+                    Container(
+                      child: Image.asset(
+                        'images/${i}_.png',
+                        height: 30,
+                        width: 30,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Container(
+                      child: Text('${input2[i]}'),
+                    ),
+                  ],
+                ),
+                Container(
+                  padding: EdgeInsets.only(right: 10),
+                  child: Image.asset(
+                    'images/right_arrow.png',
+                    height: 10,
+                    width: 15,
+                  ),
+                ),
+              ],
+            ),
+          ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Color.fromARGB(117, 207, 95, 255)),
+                margin: EdgeInsets.only(top: 35),
+                height: 75,
+                width: 300,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Image.asset('images/call.png'),
+                      ),
+                      Container(
+                        child: Text(
+                            'Feel free to ask! I am here for you! oOoOoOh!',
+                            style: TextStyle(fontSize: 10)),
+                      )
+                    ]),
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              for (int i = 4; i < 8; i++) ...[
+                Container(
+                  margin: EdgeInsets.only(top: 80),
+                  child: Image.asset('images/$i.png', width: 30, height: 30),
+                )
+              ]
+
+              // }Container(), Container(), Container(), Container()],
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
