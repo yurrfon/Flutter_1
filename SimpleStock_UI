@@ -1,0 +1,354 @@
+// import 'package:flutter/material.dart';
+
+// void main() {
+//   runApp(const MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
+
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//         title: 'Flutter Demo',
+//         theme: ThemeData(
+//           primarySwatch: Colors.blue,
+//         ),
+//         initialRoute: '/',
+//         routes: {
+//           '/': (context) => MenuPage(),
+//           AboutPage.routeName: (context) => AboutPage()
+//         });
+//   }
+// }
+
+// class MyHomePage extends StatefulWidget {
+//   const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+//   final String title;
+
+//   @override
+//   State<MyHomePage> createState() => _MyHomePageState();
+// }
+
+// class _MyHomePageState extends State<MyHomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(widget.title),
+//       ),
+//       body:
+//           Center(), // This trailing comma makes auto-formatting nicer for build methods.
+//     );
+//   }
+// }
+
+// //menu/pages/menu_page.dart
+// class MenuPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     // 'Scaffold' represents a screen in a 'MaterialApp'
+//     // In most cases, there is just 1 'Scaffold' per screen
+//     return Scaffold(
+//         appBar: AppBar(title: const Text('Menu Page')),
+//         body: Center(
+//           child: Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: [
+//                 const Text('Menu Page'),
+//                 const SizedBox(
+//                   height: 16,
+//                 ),
+//                 ElevatedButton(
+//                   onPressed: () {
+//                     Navigator.push(
+//                         context,
+//                         MaterialPageRoute(
+//                             builder: (context) => const HomePage(
+//                                   userName: 'Uris',
+//                                 )));
+//                   },
+//                   child: const Text('Open Home Page'),
+//                 ),
+//                 const SizedBox(
+//                   height: 16,
+//                 ),
+//                 ElevatedButton(
+//                   onPressed: () {
+//                     Navigator.pushNamed(
+//                       context,
+//                       AboutPage.routeName,
+//                       arguments: AboutPageArguments('YURR'),
+//                     );
+//                   },
+//                   //await Navigator.pushNamed(context, AboutPage.routeName),
+//                   child: const Text('Open About Page'),
+//                 )
+//               ]),
+//         ));
+//   }
+// }
+
+// //menu/pages/home_page.dart
+// class HomePage extends StatelessWidget {
+//   const HomePage({required this.userName});
+//   final String userName;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         appBar: AppBar(title: const Text('Home Page')),
+//         body: Center(child: Text('Welcome to the Home Page!. $userName')));
+//   }
+// }
+
+// class AboutPageArguments {
+//   final String userName;
+
+//   AboutPageArguments(this.userName);
+// }
+
+// //menu/pages/home_page.dart
+// class AboutPage extends StatelessWidget {
+//   static const String routeName = '/about';
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final args =
+//         ModalRoute.of(context)!.settings.arguments as AboutPageArguments;
+//     return Scaffold(
+//         appBar: AppBar(title: const Text('About Page')),
+//         body: const Center(
+//           child: Text('Welcome to about page'),
+//         ));
+//   }
+// }
+// Day 3 - Write your custom widgets in Flutter
+
+// Day 3 - Write your custom widgets in Flutter
+// Day 3 - Write your custom widgets in Flutter
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Simple Stock',
+      debugShowMaterialGrid:
+          true, //REMOVE ME IF YOU DO NOT WANT THE GRIDLINES TO SHOW
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(title: 'Simple Stock'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    // 1 `Scaffold` is 1 screen in the app.
+    return Scaffold(
+      body: Column(
+        children: [
+          Row(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(
+                  left: 16,
+                  top: 16,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    color: Colors.purple,
+                    height: 64,
+                    width: 64,
+                    child: Image.network(
+                      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg/440px-Elon_Musk_Royal_Society_%28crop2%29.jpg",
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                      margin: const EdgeInsets.only(
+                        left: 16,
+                        top: 16,
+                      ),
+                      child: const Text("Elon Musk",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ))),
+                  Container(
+                    margin: const EdgeInsets.only(
+                      left: 16,
+                      top: 8,
+                    ),
+                    child: Text(
+                      "CEO, Tesla",
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.5),
+                        fontSize: 10,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          const Divider(height: 1.15),
+          Container(
+            child: Column(
+              children: const [
+                ProfileMenu(iconData: Icons.person, menuName: 'Personal Data'),
+                ProfileMenu(iconData: Icons.person, menuName: 'Settings'),
+                ProfileMenu(iconData: Icons.person, menuName: 'E-Statement'),
+                ProfileMenu(iconData: Icons.person, menuName: 'Referral Code'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          const Divider(height: 1.5),
+          Container(
+            height: 150,
+            alignment: Alignment.center,
+            child: ListView(
+              children: const [
+                ProfileMenu(iconData: Icons.person, menuName: 'FAQs'),
+                ProfileMenu(iconData: Icons.person, menuName: 'Our HandBook'),
+                ProfileMenu(iconData: Icons.person, menuName: 'Community'),
+              ],
+            ),
+          ),
+          const Divider(height: 1),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20.0),
+            child: Container(
+              margin: const EdgeInsets.only(top: 6),
+              height: 80,
+              width: 200,
+              alignment: Alignment.center,
+              color: Colors.purple.withOpacity(0.3),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(color: Colors.green, child: Icon(Icons.person)),
+                  Container(
+                      color: Colors.blue,
+                      width: 100,
+                      height: 25,
+                      alignment: Alignment.center,
+                      child: const Text('PLEASE CALL ME ANYTIME BABY!'))
+                ],
+              ),
+            ),
+          ),
+          // Container(
+          //   height: 200,
+          //   child: ListView(
+          //     children: const [
+          //       ProfileMenu(iconData: Icons.person, menuName: 'Personal Data'),
+          //       ProfileMenu(iconData: Icons.settings, menuName: 'Settings'),
+          //       ProfileMenu(iconData: Icons.wb_sunny, menuName: 'E-Statement'),
+          //       ProfileMenu(iconData: Icons.code, menuName: 'Referral Code'),
+          //     ],
+          //   ),
+          // ),
+          // const SizedBox(
+          //   height: 16,
+          // ),
+          // const Divider(height: 1.15),
+          // Container(
+          //   height: 130,
+          //   child: ListView(
+          //     children: [
+          //       ProfileMenu(iconData: Icons.chat_bubble, menuName: 'FAQs'),
+          //       ProfileMenu(
+          //           iconData: Icons.handshake, menuName: 'Our Handsbooks'),
+          //       ProfileMenu(
+          //           iconData: Icons.commute_rounded, menuName: 'Community'),
+          //     ],
+          //   ),
+          // ),
+          // const SizedBox(height: 16),
+          // const Divider(height: 1.15)
+        ],
+      ),
+    );
+  }
+}
+
+// This is an example of your custom widget.
+class ProfileMenu extends StatelessWidget {
+  const ProfileMenu({
+    Key? key,
+    required this.iconData,
+    required this.menuName,
+  }) : super(key: key);
+
+  final IconData iconData;
+  final String menuName;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            const SizedBox(width: 16),
+            Container(
+              height: 48,
+              width: 48,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.grey.withOpacity(0.05),
+              ),
+              child: Icon(iconData, color: Colors.black87),
+            ),
+            const SizedBox(width: 16),
+            Text(
+              menuName,
+              style: const TextStyle(
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
+        Container(
+          margin: const EdgeInsets.only(right: 16),
+          child: const Icon(
+            Icons.arrow_forward_ios,
+            size: 12,
+          ),
+        ),
+      ],
+    );
+  }
+}
